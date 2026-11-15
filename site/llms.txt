@@ -4,6 +4,13 @@
 
 Gemaakt door Erik (erik@beltman.email). Geen reclame, geen tracking-cookies.
 
+## Kernfeiten
+- Vakantiewijzer zet één zoekopdracht (bestemming, data, aantal personen) tegelijk door naar Nederlandse vakantiesites, in vier soorten: pakketreis (vlucht + hotel), hotel, vakantiepark en camping.
+- Bij Booking.com, Expedia, Hotels.com, Kayak en Airbnb staat de zoekopdracht al ingevuld; bij Zoover, TUI, Sunweb, Corendon, D-reizen, Prijsvrij, VakantieDiscounter, ANWB Reizen, Center Parcs, Landal, Roompot, EuroParcs en Eurocampings open je de site zelf.
+- Toont zelf geen prijzen. Gratis, zonder account.
+- Schoolvakanties 2026-2027 (Rijksoverheid) kies je met één tik: kerstvakantie 19 december 2026 t/m 3 januari 2027; zomervakantie 2027 Noord vanaf 10 juli, Midden vanaf 17 juli, Zuid vanaf 24 juli.
+- Consumentenbond: 83% van de onderzochte pakketreisaanbiedingen was niet te boeken voor de geadverteerde prijs; vergelijk daarom de totaalprijs vlak voor het betalen.
+
 ## Pagina's
 - [Vakantiewijzer – Vakantie, hotel, vakantiepark en camping vergelijken](https://vakantietoppers.netlify.app/)
 - [Vakantiegids: schoolvakanties, verborgen kosten en tips | Vakantiewijzer](https://vakantietoppers.netlify.app/gids/)
