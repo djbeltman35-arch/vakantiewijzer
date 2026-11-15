@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Vakantiewijzer – Vakantie, hotel, vakantiepark en camping vergelijken</title>
+<title>Vakantiewijzer – vakantie, park en camping vergelijken</title>
 <meta name="description" content="Vul je vakantie één keer in en zoek tegelijk op de beste Nederlandse vakantiesites: pakketreizen, all-inclusive, hotels, vakantieparken en campings. Gratis app.">
 <meta name="robots" content="index, follow">
 <link rel="canonical" href="https://vakantietoppers.netlify.app/">
@@ -11,7 +11,7 @@
 <meta property="og:type" content="website">
 <meta property="og:locale" content="nl_NL">
 <meta property="og:site_name" content="Vakantiewijzer">
-<meta property="og:title" content="Vakantiewijzer – Vakanties vergelijken">
+<meta property="og:title" content="Vakantiewijzer – vakantie, park en camping vergelijken">
 <meta property="og:description" content="Zoek tegelijk op Booking.com, Zoover, TUI, Sunweb, Center Parcs, Landal, Eurocampings en meer.">
 <meta property="og:image" content="https://vakantietoppers.netlify.app/deelplaatje.png">
 <meta property="og:image:width" content="1200">
@@ -25,7 +25,7 @@
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-title" content="Vakantiewijzer">
-<style>@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/atkinson-hyperlegible-400.woff2) format('woff2')}@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/atkinson-hyperlegible-700.woff2) format('woff2')}@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/big-shoulders-display-700.woff2) format('woff2')}@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/big-shoulders-display-800.woff2) format('woff2')}@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/big-shoulders-display-900.woff2) format('woff2')}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/jetbrains-mono-500.woff2) format('woff2')}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/jetbrains-mono-700.woff2) format('woff2')}
+<link rel="preload" href="/fonts/big-shoulders-display-900.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/big-shoulders-display-800.woff2" as="font" type="font/woff2" crossorigin><link rel="preload" href="/fonts/atkinson-hyperlegible-400.woff2" as="font" type="font/woff2" crossorigin><style>@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:400;font-display:optional;src:url(/fonts/atkinson-hyperlegible-400.woff2) format('woff2')}@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/atkinson-hyperlegible-700.woff2) format('woff2')}@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/big-shoulders-display-700.woff2) format('woff2')}@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/big-shoulders-display-800.woff2) format('woff2')}@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/big-shoulders-display-900.woff2) format('woff2')}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:optional;src:url(/fonts/jetbrains-mono-500.woff2) format('woff2')}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:optional;src:url(/fonts/jetbrains-mono-700.woff2) format('woff2')}
 /* Layout: zelfde familie als Vluchtwijzer. Telefoon: één kolom (soort vakantie, vier vragen, sites). Computer: formulier links, sites rechts. */
 :root{
   --bg:#EEF3F8; --paper:#FFFFFF; --ink:#13233A; --muted:#5B6C83; --line:#D3DDE8; --soft:#F5F8FB;
@@ -141,7 +141,7 @@ footer .made a{color:var(--accent);text-decoration:none}
 .sister:hover{border-color:var(--accent)}
 footer .apps a{color:var(--accent)}
 @media (min-width:960px){.sister{grid-column:2}}
-</style>
+.brand b{font-size:min(44px,10.9vw)}.hero h1{font-size:min(40px,10.6vw)}@media(min-width:960px){.brand b{font-size:56px}.hero h1{font-size:44px}}</style>
 </head>
 <body>
 <div class="wrap">
@@ -381,7 +381,7 @@ function run(scroll){
 $("f").addEventListener("submit",ev=>{ev.preventDefault();run(true)});
 
 /* koppen altijd op één regel */
-function fitOne(h,max){if(!h)return;let size=max;h.style.fontSize=size+"px";while(h.scrollWidth>h.clientWidth&&size>16){size--;h.style.fontSize=size+"px"}}
+function fitOne(h,max){if(document.fonts&&document.fonts.status!=="loaded")return;if(!h)return;let size=max;h.style.fontSize=size+"px";while(h.scrollWidth>h.clientWidth&&size>16){size--;h.style.fontSize=size+"px"}}
 function fitBig(){const wide=innerWidth>=960;fitOne($("resTitle"),wide?60:48);fitOne(document.querySelector(".hero h1"),wide?44:40);fitOne(document.querySelector(".brand b"),wide?56:44)}
 addEventListener("resize",fitBig);
 if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitBig);
