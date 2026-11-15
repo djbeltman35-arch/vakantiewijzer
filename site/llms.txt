@@ -2,7 +2,7 @@
 
 > Gratis vergelijker die één vakantiezoekopdracht tegelijk doorzet naar Nederlandse sites voor pakketreizen, hotels, vakantieparken en campings.
 
-Gemaakt door Erik (erik@beltman.email). Geen reclame, geen tracking-cookies.
+Gemaakt door Erik (djbeltman35@gmail.com). Geen reclame, geen tracking-cookies.
 
 ## Kernfeiten
 - Vakantiewijzer zet één zoekopdracht (bestemming, data, aantal personen) tegelijk door naar Nederlandse vakantiesites, in vier soorten: pakketreis (vlucht + hotel), hotel, vakantiepark en camping.

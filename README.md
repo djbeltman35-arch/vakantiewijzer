@@ -1,6 +1,6 @@
 # Vakantiewijzer
 
-Live: https://vakantietoppers.netlify.app — gemaakt door Erik (erik@beltman.email).
+Live: https://vakantietoppers.netlify.app — gemaakt door Erik (djbeltman35@gmail.com).
 
 - De site staat in `site/` (statische HTML, geen build). Netlify zet bij elke push naar `main` de map `site/` online.
 - Netlify-project **vakantietoppers**.
