@@ -1,0 +1,404 @@
+<!doctype html>
+<html lang="nl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Vakantiewijzer – Vakantie, hotel, vakantiepark en camping vergelijken</title>
+<meta name="description" content="Vul je vakantie één keer in en zoek tegelijk op de beste Nederlandse vakantiesites: pakketreizen, all-inclusive, hotels, vakantieparken en campings. Gratis app.">
+<meta name="robots" content="index, follow">
+<link rel="canonical" href="https://vakantietoppers.netlify.app/">
+<meta property="og:url" content="https://vakantietoppers.netlify.app/">
+<meta property="og:type" content="website">
+<meta property="og:locale" content="nl_NL">
+<meta property="og:site_name" content="Vakantiewijzer">
+<meta property="og:title" content="Vakantiewijzer – Vakanties vergelijken">
+<meta property="og:description" content="Zoek tegelijk op Booking.com, Zoover, TUI, Sunweb, Center Parcs, Landal, Eurocampings en meer.">
+<meta property="og:image" content="https://vakantietoppers.netlify.app/deelplaatje.png">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"WebApplication","name":"Vakantiewijzer","applicationCategory":"TravelApplication","operatingSystem":"Alle (web-app)","inLanguage":"nl","url":"https://vakantietoppers.netlify.app/","description":"Gratis app om pakketreizen, hotels, vakantieparken en campings te vergelijken op de beste Nederlandse vakantiesites.","offers":{"@type":"Offer","price":"0","priceCurrency":"EUR"},"author":{"@type":"Person","name":"Erik"}}</script>
+<meta name="theme-color" content="#0A5FB4">
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icon-192.png" type="image/png">
+<link rel="apple-touch-icon" href="apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Vakantiewijzer">
+<style>@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:400;font-display:swap;src:url(/fonts/atkinson-hyperlegible-400.woff2) format('woff2')}@font-face{font-family:'Atkinson Hyperlegible';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/atkinson-hyperlegible-700.woff2) format('woff2')}@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/big-shoulders-display-700.woff2) format('woff2')}@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:800;font-display:swap;src:url(/fonts/big-shoulders-display-800.woff2) format('woff2')}@font-face{font-family:'Big Shoulders Display';font-style:normal;font-weight:900;font-display:swap;src:url(/fonts/big-shoulders-display-900.woff2) format('woff2')}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:500;font-display:swap;src:url(/fonts/jetbrains-mono-500.woff2) format('woff2')}@font-face{font-family:'JetBrains Mono';font-style:normal;font-weight:700;font-display:swap;src:url(/fonts/jetbrains-mono-700.woff2) format('woff2')}
+/* Layout: zelfde familie als Vluchtwijzer. Telefoon: één kolom (soort vakantie, vier vragen, sites). Computer: formulier links, sites rechts. */
+:root{
+  --bg:#EEF3F8; --paper:#FFFFFF; --ink:#13233A; --muted:#5B6C83; --line:#D3DDE8; --soft:#F5F8FB;
+  --accent:#0A5FB4; --accent-ink:#FFFFFF; --accent-soft:#E3EEF9; --signal:#F2B200; --signal-ink:#1A1400; --good:#1D7A4C; --good-soft:#E3F3EA; --warn:#9A5B00; --warn-soft:#FBF0DA;
+  --f-display:"Big Shoulders Display","Arial Narrow",Impact,sans-serif;
+  --f-body:"Atkinson Hyperlegible",system-ui,-apple-system,"Segoe UI",sans-serif;
+  --f-mono:"JetBrains Mono",ui-monospace,Menlo,Consolas,monospace;
+  --r:14px; color-scheme:light;
+}
+@media (prefers-color-scheme: dark){:root{
+  --bg:#0D1520; --paper:#152131; --ink:#E7EEF7; --muted:#97A8BE; --line:#2A3B52; --soft:#1A283A;
+  --accent:#5BA6F2; --accent-ink:#06121F; --accent-soft:#1B3150; --good:#62CC98; --good-soft:#163527; --warn:#F2B866; --warn-soft:#3A2C12; color-scheme:dark}}
+*{box-sizing:border-box}
+html{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.5;-webkit-text-size-adjust:100%}
+[hidden]{display:none!important}
+button{font:inherit;color:inherit}
+:focus-visible{outline:3px solid var(--signal);outline-offset:2px}
+.wrap{max-width:640px;margin:0 auto;padding-block:16px 48px;padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));display:grid;grid-template-columns:minmax(0,1fr);gap:18px}
+
+.brand{display:flex;align-items:center;gap:12px;min-width:0}
+.mark{width:52px;height:52px;border-radius:12px;background:var(--accent);display:grid;place-items:center;flex:none}
+.mark svg{width:32px;height:32px;fill:#fff}
+.brand b{font-family:var(--f-display);font-weight:900;-webkit-text-stroke:.6px currentColor;font-size:44px;letter-spacing:.02em;text-transform:uppercase;line-height:1;white-space:nowrap;overflow:hidden}
+.brand b span{background:var(--signal);color:var(--signal-ink);padding:0 .08em;margin-left:.04em;-webkit-text-stroke-color:var(--signal-ink)}
+.hero h1{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:40px;line-height:1.05;margin:4px 0 0;white-space:nowrap;overflow:hidden}
+
+/* soort vakantie */
+.types{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.types button{display:grid;justify-items:center;gap:4px;padding:12px 4px;border-radius:12px;border:1px solid var(--line);background:var(--paper);cursor:pointer;font-weight:700;font-size:13px;line-height:1.2;text-align:center;color:var(--muted)}
+.types button svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
+.types button[aria-pressed="true"]{border:2px solid var(--accent);color:var(--accent);background:var(--accent-soft)}
+
+/* formulier */
+form.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r);display:grid;padding:6px 16px 18px}
+.step{display:grid;grid-template-columns:32px minmax(0,1fr);gap:4px 12px;padding:16px 0;border-bottom:1px solid var(--line)}
+.step:last-of-type{border-bottom:0}
+.num{grid-row:1 / span 2;width:32px;height:32px;border-radius:50%;background:var(--accent-soft);color:var(--accent);font-weight:700;display:grid;place-items:center;font-size:15px}
+.step h2{margin:3px 0 8px;font-size:18px;font-weight:700;line-height:1.3}
+.step .body{display:grid;grid-template-columns:minmax(0,1fr);gap:10px;min-width:0}
+.hint{margin:0;font-size:14px;color:var(--muted)}
+.field{width:100%;min-width:0;font:inherit;font-size:17px;color:var(--ink);background:var(--soft);border:1px solid var(--line);border-radius:10px;padding:12px 14px;min-height:50px}
+label{display:grid;gap:4px;min-width:0}
+.lbl{font-size:13px;font-weight:700;color:var(--muted)}
+.dates{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+.dates input{font-size:16px}
+.nights{font-size:14px;color:var(--muted)}
+.pax{display:flex;align-items:center;justify-content:space-between;gap:12px}
+.stepper{display:flex;align-items:center;gap:6px}
+.stepper button{width:44px;height:44px;border-radius:50%;border:1px solid var(--line);background:var(--soft);font-size:22px;font-weight:700;cursor:pointer;line-height:1}
+.stepper input{width:3ch;text-align:center;border:0;background:none;font:inherit;font-size:20px;font-weight:700;color:var(--ink);padding:0;-moz-appearance:textfield}
+.stepper input::-webkit-inner-spin-button{-webkit-appearance:none}
+.switch{display:flex;align-items:center;justify-content:space-between;gap:12px;cursor:pointer;padding:4px 0}
+.switch input{appearance:none;-webkit-appearance:none;width:50px;height:30px;border-radius:999px;background:var(--line);position:relative;cursor:pointer;flex:none;margin:0;transition:background .2s}
+.switch input::after{content:"";position:absolute;top:3px;left:3px;width:24px;height:24px;border-radius:50%;background:#fff;box-shadow:0 1px 3px rgba(0,0,0,.3);transition:left .2s}
+.switch input:checked{background:var(--accent)}
+.switch input:checked::after{left:23px}
+.aiNote{margin:0;font-size:14px;color:var(--accent);background:var(--accent-soft);border-radius:10px;padding:8px 12px}
+.site .tip{grid-column:1 / -1;font-size:13px;color:var(--accent);background:var(--accent-soft);border-radius:8px;padding:6px 10px}
+.err{color:#C2362B;font-weight:700;margin:4px 0 0}
+.go{width:100%;margin-top:6px;padding:16px;border:0;border-radius:12px;background:var(--accent);color:var(--accent-ink);font-size:18px;font-weight:700;cursor:pointer}
+
+/* resultaten */
+.results{display:grid;gap:12px;align-content:start}
+.results h2.big{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:48px;line-height:1;margin:6px 0 0;color:var(--accent);white-space:nowrap;overflow:hidden}
+.summary{color:var(--muted);font-size:15px;margin:0}
+.summary strong{color:var(--ink)}
+.group{display:grid;gap:10px}
+.group h3{margin:6px 0 0;font-size:15px;text-transform:uppercase;letter-spacing:.06em;color:var(--muted)}
+.sites{list-style:none;margin:0;padding:0;display:grid;gap:10px}
+.site{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:center;gap:6px 14px;padding:14px 16px;border-radius:var(--r);border:1px solid var(--line);background:var(--paper);text-decoration:none;color:inherit}
+.site:hover{border-color:var(--accent)}
+.site .nm{font-weight:700;font-size:18px;display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.site .why{grid-column:1;font-size:14px;color:var(--muted)}
+.site .warn{grid-column:1 / -1;font-size:13px;color:var(--warn);background:var(--warn-soft);border-radius:8px;padding:6px 10px}
+.site .go2{grid-row:1 / span 2;grid-column:2;font-weight:700;color:var(--accent);white-space:nowrap}
+.badge{font-size:12px;font-weight:700;padding:3px 8px;border-radius:999px;background:var(--soft);color:var(--muted)}
+.badge.ok{background:var(--good-soft);color:var(--good)}
+.badge.top{background:var(--signal);color:var(--signal-ink)}
+.ready .site{border-left:4px solid var(--accent)}
+.note{margin:0;font-size:14px;color:var(--muted)}
+
+details.card{background:var(--paper);border:1px solid var(--line);border-radius:var(--r)}
+details summary{list-style:none;cursor:pointer;padding:16px;display:flex;align-items:center;gap:10px;font-weight:700;font-size:17px}
+details summary::-webkit-details-marker{display:none}
+details summary::after{content:"+";margin-left:auto;font-size:22px;color:var(--accent);line-height:1}
+details[open] summary::after{content:"−"}
+details .inner{padding:0 16px 16px;display:grid;gap:10px}
+details .inner p{margin:0;max-width:65ch}
+details .inner a{color:var(--accent)}
+.tips{margin:0;padding-left:20px;display:grid;gap:8px}
+footer{color:var(--muted);font-size:13px;text-align:center;display:grid;gap:8px}
+footer p{margin:0}
+footer a{color:var(--accent)}
+footer .made{font-size:15px;font-weight:700;color:var(--ink)}
+footer .made a{color:var(--accent);text-decoration:none}
+
+@media (max-width:380px){.dates{grid-template-columns:1fr}.types button{font-size:12px}}
+@media (min-width:960px){
+  .wrap{max-width:1180px;grid-template-columns:420px minmax(0,1fr);column-gap:40px;row-gap:22px;padding-block:28px 64px}
+  .brand,.hero,.types{grid-column:1 / -1}
+  .hero{padding-bottom:6px;border-bottom:1px solid var(--line)}
+  .types{max-width:640px}
+  form.card{grid-column:1;grid-row:4 / span 3;align-self:start;position:sticky;top:20px;box-shadow:0 10px 30px rgba(19,35,58,.08)}
+  .results,details.card,footer{grid-column:2}
+  footer{text-align:left}
+  .sites{grid-template-columns:1fr 1fr}
+}
+@media (min-width:960px) and (max-height:820px){form.card{position:static}}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+.sister{display:grid;gap:4px;padding:14px 16px;border-radius:14px;border:1px solid var(--line);background:var(--paper);text-decoration:none;color:var(--ink)}
+.sister b{font-size:17px}.sister span{color:var(--accent);font-weight:700;font-size:15px}
+.sister:hover{border-color:var(--accent)}
+footer .apps a{color:var(--accent)}
+@media (min-width:960px){.sister{grid-column:2}}
+</style>
+</head>
+<body>
+<div class="wrap">
+<header class="brand">
+  <span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zM11 20h2v3h-2zM1 11h3v2H1zM20 11h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zM16.3 17.7l1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg></span>
+  <b>Vakantie<span>wijzer</span></b>
+</header>
+
+<div class="hero"><h1>Vind de beste vakantie</h1></div>
+
+<div class="types" role="group" aria-label="Soort vakantie" id="types">
+  <button type="button" data-t="pakket" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M2 16l20-6-2-3-7 2-6-5-2 1 4 6-5 1.5-2-2-2 1z"/><path d="M3 21h18"/></svg>Vlucht + hotel</button>
+  <button type="button" data-t="hotel" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 21V5h12v16M15 9h6v12M7 9h2M7 13h2M7 17h2M11 9h0M11 13h0M18 13h0M18 17h0M2 21h20"/></svg>Hotel</button>
+  <button type="button" data-t="park" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 11l7-6 7 6M5 10v10h10V10M8 20v-5h4v5M19 20v-6M17 14h4l-2-6z"/></svg>Vakantiepark</button>
+  <button type="button" data-t="camping" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 20L12 5l9 15zM12 5v15M9 20l3-5 3 5M2 20h20"/></svg>Camping</button>
+</div>
+
+<form class="card" id="f" novalidate autocomplete="off">
+  <div class="step">
+    <span class="num" aria-hidden="true">1</span>
+    <h2><label for="dest">Waar wil je heen?</label></h2>
+    <div class="body">
+      <input class="field" id="dest" list="destList" placeholder="Bijv. Tenerife, Veluwe of Kroatië">
+      <datalist id="destList"></datalist>
+      <p class="hint" id="destHint">Een land, eiland, regio of stad.</p>
+    </div>
+  </div>
+  <div class="step">
+    <span class="num" aria-hidden="true">2</span>
+    <h2>Wanneer?</h2>
+    <div class="body">
+      <div class="dates">
+        <label for="d1"><span class="lbl" id="d1lbl">Vertrek</span><input class="field" id="d1" type="date"></label>
+        <label for="d2"><span class="lbl" id="d2lbl">Terug</span><input class="field" id="d2" type="date"></label>
+      </div>
+      <span class="nights" id="nights"></span>
+    </div>
+  </div>
+  <div class="step">
+    <span class="num" aria-hidden="true">3</span>
+    <h2>Met hoeveel?</h2>
+    <div class="body">
+      <div class="pax">
+        <label for="pax" style="display:block">Volwassenen</label>
+        <div class="stepper">
+          <button type="button" id="paxMin" aria-label="Eén persoon minder">−</button>
+          <input id="pax" type="number" min="1" max="9" value="2" readonly>
+          <button type="button" id="paxPlus" aria-label="Eén persoon meer">+</button>
+        </div>
+      </div>
+      <p class="hint">Met kinderen? Vul hun leeftijd op de site zelf in, dan klopt de prijs.</p>
+      <label class="switch" for="ai" id="aiWrap"><span>Alleen all-inclusive<br><span class="hint">Eten en drinken inbegrepen</span></span><input type="checkbox" id="ai" role="switch"></label>
+    </div>
+  </div>
+  <p class="err" id="err" role="alert" hidden></p>
+  <button class="go" type="submit">Zoek op de beste sites</button>
+</form>
+
+<section class="results" id="res" aria-live="polite">
+  <h2 class="big" id="resTitle">De beste vakantiesites!</h2>
+  <p class="summary" id="sum"></p>
+  <div class="group ready" id="gReady"><h3>Je zoekopdracht staat al klaar</h3><p class="aiNote" id="aiReady" hidden></p><ul class="sites" id="lReady"></ul></div>
+  <div class="group" id="gSelf"><h3>Hier vul je zelf je reis in</h3><p class="aiNote" id="aiSelf" hidden>Zet op deze sites zelf het filter "all-inclusive" aan.</p><ul class="sites" id="lSelf"></ul></div>
+</section>
+
+<a class="sister" href="https://vluchtwijzer.netlify.app/"><b>Alleen een vlucht nodig?</b><span>Vluchtwijzer zoekt de goedkoopste vlucht vanaf Schiphol, Eindhoven, Weeze, Düsseldorf en meer →</span></a>
+
+<details class="card">
+  <summary>Hoe werkt Vakantiewijzer?</summary>
+  <div class="inner">
+    <p>Vakantiewijzer zoekt je vakantie in één keer op de beste Nederlandse vakantiesites. Kies wat voor vakantie je zoekt: een pakketreis met vlucht en hotel, alleen een hotel, een vakantiepark of een camping. Vul je bestemming, data en het aantal personen in, en open dezelfde zoekopdracht bij Booking.com, Expedia, Airbnb, Zoover, TUI, Sunweb, Corendon, Center Parcs, Landal, Roompot, Eurocampings en meer.</p>
+    <p>Wil je all-inclusive, zet dan de schakelaar aan. Vakantiewijzer is gratis en werkt op je telefoon en computer. Lees ook de <a href="gids/">vakantiegids</a>, met de <a href='/gids/schoolvakanties-2026-2027'>schoolvakanties 2026-2027</a>, <a href='/gids/pakketreis-verborgen-kosten'>verborgen kosten bij pakketreizen</a> en <a href='/gids/acsi-campingcard'>korting op campings</a>.</p>
+  </div>
+</details>
+
+<details class="card">
+  <summary>Tips om goedkoper op vakantie te gaan</summary>
+  <div class="inner"><ul class="tips" id="tips"></ul></div>
+</details>
+
+<footer>
+  <p>Vakantiewijzer toont zelf geen prijzen; je zoekt op de sites zelf. Vergelijk altijd de totaalprijs vlak voor het betalen.</p>
+  <p><a href="gids/">Vakantiegids: schoolvakanties 2026-2027, verborgen kosten en tips om goedkoper op vakantie te gaan</a></p>
+  <p class="apps">Meer apps van Erik: <a href="https://vluchtwijzer.netlify.app/">Vluchtwijzer</a> (goedkoopste vlucht vanaf meerdere vliegvelden) · <a href="https://goedkopertanken.netlify.app/">Tankwijzer</a> (goedkoop tanken in Nederland, België en Duitsland) · <a href="https://euroroadrules.eu/nl/">EuroRoadRules</a> (tol, vignetten en verkeersregels in Europa) · <a href="https://boodschappenvergelijk.nl/">Boodschappenvergelijk.nl</a> (goedkoopste supermarkt) · <a href="https://foutcodezoeker.nl/">Foutcodezoeker</a> (storingen zelf oplossen). Lees ook de <a href="https://vluchtwijzer.netlify.app/gids/">reisgids</a>.</p>
+  <p class="made">Made by <a href="mailto:erik@beltman.email">Erik</a></p>
+</footer>
+</div>
+
+<script>
+const $=id=>document.getElementById(id);
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const iso=d=>d.toISOString().slice(0,10);
+const nl=d=>new Date(d+"T12:00").toLocaleDateString("nl-NL",{weekday:"short",day:"numeric",month:"short"});
+function store(k,v){try{localStorage.setItem(k,JSON.stringify(v))}catch(e){}}
+function load(k){try{return JSON.parse(localStorage.getItem(k))}catch(e){return null}}
+
+/* ---------- links met reis ingevuld (formaten die bekend en stabiel zijn) ---------- */
+const enc=encodeURIComponent;
+const L={
+  booking:s=>`https://www.booking.com/searchresults.nl.html?ss=${enc(s.dest)}&checkin=${s.d1}&checkout=${s.d2}&group_adults=${s.p}&no_rooms=1&group_children=0${s.ai?"&nflt=mealplan%3D4":""}`,
+  expedia:s=>`https://www.expedia.nl/Hotel-Search?destination=${enc(s.dest)}&startDate=${s.d1}&endDate=${s.d2}&adults=${s.p}`,
+  hotelscom:s=>`https://nl.hotels.com/Hotel-Search?destination=${enc(s.dest)}&startDate=${s.d1}&endDate=${s.d2}&adults=${s.p}`,
+  airbnb:s=>`https://www.airbnb.nl/s/${enc(s.dest)}/homes?checkin=${s.d1}&checkout=${s.d2}&adults=${s.p}`,
+  kayak:s=>`https://www.kayak.nl/hotels/${enc(s.dest)}/${s.d1}/${s.d2}/${s.p}adults?sort=price_a`
+};
+
+/* ---------- sites per soort vakantie ---------- */
+const COSTS="Consumentenbond: bij reisaanbieders kwamen verplichte kosten (toeristenbelasting, boekingskosten) vaak pas later bij de prijs.";
+const TYPES={
+  pakket:{title:"De beste pakketreizen!",hint:"Een land, eiland of regio, bijv. Turkije, Kreta of Costa del Sol.",
+    sites:[
+      {n:"Zoover",why:"Vergelijkt reizen van veel reisorganisaties, met reviews van reizigers.",top:true,home:"https://www.zoover.nl/"},
+      {n:"TUI",why:"Grootste reisorganisatie van Nederland, veel vertrekvliegvelden.",home:"https://www.tui.nl/"},
+      {n:"Sunweb",why:"Veel zonvakanties en all-inclusive, ook vanaf België en Duitsland.",home:"https://www.sunweb.nl/"},
+      {n:"Corendon",why:"Sterk in Turkije, Griekenland en Curaçao.",home:"https://www.corendon.nl/",warn:COSTS},
+      {n:"D-reizen",why:"Veel reisbureaus in Nederland, ook online.",home:"https://www.d-reizen.nl/",warn:"Consumentenbond: prijs veranderde vaak sterk tijdens het boeken."},
+      {n:"Prijsvrij",why:"Scherpe prijzen, vaak met vertrek vanaf Duitse vliegvelden.",home:"https://www.prijsvrij.nl/",warn:"Consumentenbond: prijs veranderde vaak sterk tijdens het boeken."},
+      {n:"VakantieDiscounter",why:"Veel aanbiedingen en last-minutes.",home:"https://www.vakantiediscounter.nl/"},
+      {n:"ANWB Reizen",why:"Reizen van de ANWB, ook autovakanties.",home:"https://www.anwb.nl/vakantie"}
+    ],
+    ready:[{n:"Booking.com",k:"booking",why:"Alleen het hotel; boek de vlucht dan los in Vluchtwijzer. Soms goedkoper dan een pakket."},
+           {n:"Expedia",k:"expedia",why:"Hotels; bij Expedia kun je daarna ook een vlucht toevoegen."}],
+    tips:["Zet de prijs voor jouw reis naast elkaar vlak vóór het betalen. De Consumentenbond vond dat 83% van de aanbiedingen niet te boeken was voor de geadverteerde prijs.",
+          "Let op toeristenbelasting, boekingskosten en verplichte bijdragen. Die kunnen honderden euro's schelen.",
+          "Reken ook uit wat vlucht en hotel los kosten. Gebruik daarvoor Vluchtwijzer en de hotelsites hier.",
+          "Vertrek vanaf Düsseldorf, Weeze of Brussel is vaak goedkoper, maar tel de reiskosten erbij op."]},
+  hotel:{title:"De beste hotelsites!",hint:"Een stad, eiland of regio, bijv. Barcelona of Tenerife.",
+    sites:[
+      {n:"Trivago",why:"Vergelijkt hotelprijzen van veel boekingssites.",home:"https://www.trivago.nl/"}
+    ],
+    ready:[
+      {n:"Booking.com",k:"booking",top:true,why:"Grootste aanbod, vaak gratis annuleren."},
+      {n:"Expedia",k:"expedia",why:"Vaak ledenprijzen; handig als je ook een vlucht zoekt."},
+      {n:"Hotels.com",k:"hotelscom",why:"Zelfde aanbod als Expedia, met eigen spaarprogramma."},
+      {n:"Kayak",k:"kayak",why:"Vergelijkt hotelprijzen van verschillende sites."},
+      {n:"Airbnb",k:"airbnb",why:"Appartementen en huizen, handig met een groep of gezin."}
+    ],
+    tips:["Kijk na het vergelijken ook op de site van het hotel zelf. Direct boeken is vaak goedkoper of geeft extra's, zoals ontbijt.",
+          "Inchecken op zondag of doordeweeks is vaak goedkoper dan op vrijdag of zaterdag.",
+          "Let op toeristenbelasting en schoonmaakkosten; die staan niet altijd in de eerste prijs."]},
+  park:{title:"De beste vakantieparken!",hint:"Een regio of plaats, bijv. Veluwe, Zeeland of Sauerland.",
+    sites:[
+      {n:"Parkvakanties.nl",why:"Vergelijkt vakantieparken in Nederland en daarbuiten, met reviews.",top:true,home:"https://www.parkvakanties.nl/vakantiepark-zoeken/"},
+      {n:"Center Parcs",why:"Parken met subtropisch zwembad, in Nederland, België en Duitsland.",home:"https://www.centerparcs.nl/"},
+      {n:"Landal GreenParks",why:"Veel parken in de natuur, ook in Duitsland en Oostenrijk.",home:"https://www.landal.nl/"},
+      {n:"Roompot",why:"Parken en campings, vooral aan de kust.",home:"https://www.roompot.nl/"},
+      {n:"EuroParcs",why:"Veel parken in Nederland, vaak aan het water.",home:"https://www.europarcs.nl/"},
+      {n:"Natuurhuisje",why:"Huisjes in de natuur van particulieren.",home:"https://www.natuurhuisje.nl/"},
+      {n:"Belvilla",why:"Vakantiehuizen in heel Europa.",home:"https://www.belvilla.nl/"}
+    ],
+    ready:[
+      {n:"Booking.com",k:"booking",why:"Ook bungalows en vakantieparken; filter op 'Vakantiepark'."},
+      {n:"Airbnb",k:"airbnb",why:"Huisjes en bungalows van particulieren."}
+    ],
+    tips:["Midweek (maandag tot vrijdag) is vaak een stuk goedkoper dan een weekend.",
+          "Let op verplichte kosten zoals schoonmaak, beddengoed en toeristenbelasting.",
+          "Buiten de schoolvakanties zijn veel parken flink goedkoper."]},
+  camping:{title:"De beste campingsites!",hint:"Een land of regio, bijv. Frankrijk, Gardameer of Zeeland.",
+    sites:[
+      {n:"Eurocampings",why:"Van ACSI: ruim 9.900 gecontroleerde campings in Europa.",top:true,home:"https://www.eurocampings.nl/"},
+      {n:"ACSI CampingCard",why:"Korting op campings buiten het hoogseizoen.",home:"https://www.campingcard.com/nl/"},
+      {n:"Zoover campings",why:"Reviews en aanbod van campings.",home:"https://www.zoover.nl/"},
+      {n:"Pitchup",why:"Kampeerplaatsen, glamping en lodges in Europa.",home:"https://www.pitchup.com/nl/"},
+      {n:"Roompot",why:"Campings en parken, vooral aan de kust.",home:"https://www.roompot.nl/"},
+      {n:"Vacansoleil",why:"Ingerichte tenten en stacaravans op campings in Europa.",home:"https://www.vacansoleil.nl/"}
+    ],
+    ready:[
+      {n:"Booking.com",k:"booking",why:"Ook campings, glamping en stacaravans; filter op 'Camping'."},
+      {n:"Airbnb",k:"airbnb",why:"Tiny houses, glamping en huisjes."}
+    ],
+    tips:["Met de ACSI CampingCard kampeer je buiten het hoogseizoen vaak met flinke korting.",
+          "Vergelijk de prijs voor jouw gezin: veel campings rekenen per persoon, auto en hond.",
+          "Boek populaire campings in Frankrijk en Italië voor de zomer ruim van tevoren."]}
+};
+const DEST=["Turkije","Spanje","Griekenland","Kreta","Rhodos","Kos","Corfu","Tenerife","Gran Canaria","Lanzarote","Fuerteventura","Mallorca","Ibiza","Costa del Sol","Costa Brava","Algarve","Madeira","Portugal","Italië","Sardinië","Sicilië","Gardameer","Toscane","Kroatië","Cyprus","Egypte","Hurghada","Marokko","Tunesië","Bulgarije","Curaçao","Aruba","Bonaire","Dubai","Frankrijk","Ardèche","Bretagne","Côte d'Azur","Oostenrijk","Zwitserland","Duitsland","Sauerland","Eifel","Veluwe","Zeeland","Drenthe","Limburg","Texel","Ameland","Terschelling","Belgische kust","Ardennen","Barcelona","Parijs","Londen","Rome","Lissabon","Praag","Wenen"];
+$("destList").innerHTML=DEST.map(d=>`<option value="${esc(d)}">`).join("");
+
+let type="pakket";
+function setType(t){
+  type=t;
+  document.querySelectorAll("#types button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.t===t)));
+  $("destHint").textContent=TYPES[t].hint;
+  const hotelish=t!=="pakket";
+  $("d1lbl").textContent=hotelish?"Aankomst":"Vertrek";
+  $("d2lbl").textContent=hotelish?"Vertrek":"Terug";
+  $("aiWrap").hidden=!(t==="pakket"||t==="hotel");
+  run(false);
+}
+$("types").addEventListener("click",e=>{const b=e.target.closest("button[data-t]");if(b)setType(b.dataset.t)});
+$("paxMin").onclick=()=>{$("pax").value=Math.max(1,+$("pax").value-1);run(false)};
+$("paxPlus").onclick=()=>{$("pax").value=Math.min(9,+$("pax").value+1);run(false)};
+["d1","d2","dest","ai"].forEach(id=>$(id).addEventListener("change",()=>run(false)));
+
+function read(){return {t:type,dest:$("dest").value.trim(),d1:$("d1").value,d2:$("d2").value,p:+$("pax").value,ai:(type==="pakket"||type==="hotel")&&$("ai").checked}}
+function check(s){
+  if(!s.dest) return "Vul in waar je heen wilt.";
+  if(!s.d1||!s.d2) return "Kies je data.";
+  if(s.d2<=s.d1) return "De terugdatum moet na de vertrekdatum liggen.";
+  return "";
+}
+function nightsOf(s){return Math.round((new Date(s.d2)-new Date(s.d1))/864e5)}
+
+function item(x,s,ready){
+  const url=ready?L[x.k](s):x.home;
+  return `<li><a class="site" href="${url}" target="_blank" rel="noopener">
+    <span class="nm">${esc(x.n)}${x.top?' <span class="badge top">Begin hier</span>':""}${ready?' <span class="badge ok">reis ingevuld</span>':""}</span>
+    <span class="why">${esc(x.why)}</span>
+    <span class="go2">${ready?"Bekijk":"Open"} →</span>
+    ${x.warn?`<span class="warn">${esc(x.warn)}</span>`:""}
+  </a></li>`;
+}
+
+function run(scroll){
+  const s=read(), T=TYPES[s.t], e=check(s);
+  $("resTitle").textContent=T.title; fitBig();
+  $("tips").innerHTML=T.tips.map(t=>`<li>${esc(t)}</li>`).join("");
+  const n=s.d1&&s.d2&&s.d2>s.d1?nightsOf(s):0;
+  $("nights").textContent=n?`${n} ${n===1?"nacht":"nachten"}`:"";
+  if(e){
+    $("err").hidden=!scroll; $("err").textContent=e;
+    $("sum").textContent="Vul je bestemming en data in, dan staan de sites hieronder klaar.";
+  }else{
+    $("err").hidden=true; store("vk",s);
+    $("sum").innerHTML=`Naar <strong>${esc(s.dest)}</strong> · ${nl(s.d1)} – ${nl(s.d2)} (${n} ${n===1?"nacht":"nachten"}) · ${s.p} ${s.p>1?"personen":"persoon"}${s.ai?" · all-inclusive":""}`;
+  }
+  const okData=!e;
+  const ready=T.ready||[];
+  $("lReady").innerHTML=okData?ready.map(x=>item(x,s,true)).join(""):"";
+  $("gReady").hidden=!okData||!ready.length;
+  $("lSelf").innerHTML=T.sites.map(x=>item(x,s,false)).join("");
+  $("aiSelf").hidden=!s.ai;
+  const hasBooking=ready.some(x=>x.k==="booking"), others=ready.filter(x=>x.k!=="booking").length;
+  $("aiReady").hidden=!s.ai||!okData;
+  $("aiReady").textContent=hasBooking?(others?'Bij Booking.com staat het filter "all-inclusive" al aan. Op de andere sites zet je het zelf aan.':'Bij Booking.com staat het filter "all-inclusive" al aan.'):'Zet op deze sites zelf het filter "all-inclusive" aan.';
+  if(scroll&&!e) $("res").scrollIntoView({behavior:matchMedia("(prefers-reduced-motion: reduce)").matches?"auto":"smooth",block:"start"});
+}
+$("f").addEventListener("submit",ev=>{ev.preventDefault();run(true)});
+
+/* koppen altijd op één regel */
+function fitOne(h,max){if(!h)return;let size=max;h.style.fontSize=size+"px";while(h.scrollWidth>h.clientWidth&&size>16){size--;h.style.fontSize=size+"px"}}
+function fitBig(){const wide=innerWidth>=960;fitOne($("resTitle"),wide?60:48);fitOne(document.querySelector(".hero h1"),wide?44:40);fitOne(document.querySelector(".brand b"),wide?56:44)}
+addEventListener("resize",fitBig);
+if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitBig);
+
+(function init(){
+  const now=new Date(),a=new Date(now),b=new Date(now);
+  a.setDate(a.getDate()+35);b.setDate(b.getDate()+42);
+  const today=iso(now);$("d1").min=today;$("d2").min=today;
+  const s=load("vk");
+  if(s&&s.d1>=today){$("dest").value=s.dest||"";$("d1").value=s.d1;$("d2").value=s.d2;$("pax").value=s.p||2;type=s.t||"pakket";$("ai").checked=!!s.ai}
+  else{$("d1").value=iso(a);$("d2").value=iso(b)}
+  /* link vanuit de vakantiegids, bijv. #soort=camping */
+  const m=location.hash.match(/soort=(pakket|hotel|park|camping)/i);
+  if(m)type=m[1].toLowerCase();
+  setType(type);
+})();
+if("serviceWorker" in navigator){addEventListener("load",()=>navigator.serviceWorker.register("sw.js").catch(()=>{}))}
+</script>
+</body>
+</html>

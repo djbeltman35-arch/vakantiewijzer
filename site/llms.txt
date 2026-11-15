@@ -1,0 +1,13 @@
+# Vakantiewijzer
+
+> Gratis vergelijker die één vakantiezoekopdracht tegelijk doorzet naar Nederlandse sites voor pakketreizen, hotels, vakantieparken en campings.
+
+Gemaakt door Erik (erik@beltman.email). Geen reclame, geen tracking-cookies.
+
+## Pagina's
+- [Vakantiewijzer – Vakantie, hotel, vakantiepark en camping vergelijken](https://vakantietoppers.netlify.app/)
+- [Vakantiegids: schoolvakanties, verborgen kosten en tips | Vakantiewijzer](https://vakantietoppers.netlify.app/gids/)
+- [Schoolvakanties 2026-2027: alle data per regio (Noord, Midden, Zuid) | Vakantiewijzer](https://vakantietoppers.netlify.app/gids/schoolvakanties-2026-2027.html)
+- [Goedkoop op vakantie: 10 tips voor pakketreis, hotel, park en camping | Vakantiewijzer](https://vakantietoppers.netlify.app/gids/goedkoop-op-vakantie-tips.html)
+- [Verborgen kosten bij pakketreizen: waar moet je op letten? | Vakantiewijzer](https://vakantietoppers.netlify.app/gids/pakketreis-verborgen-kosten.html)
+- [ACSI CampingCard: korting op campings in het laagseizoen | Vakantiewijzer](https://vakantietoppers.netlify.app/gids/acsi-campingcard.html)

@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://vakantietoppers.netlify.app/sitemap.xml

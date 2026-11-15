@@ -1,0 +1,16 @@
+{
+  "name": "Vakantiewijzer",
+  "short_name": "Vakantiewijzer",
+  "description": "Zoek je vakantie tegelijk op de beste Nederlandse sites: pakketreizen, hotels, vakantieparken en campings.",
+  "lang": "nl",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "background_color": "#EEF3F8",
+  "theme_color": "#0A5FB4",
+  "icons": [
+    {"src": "icon-192.png", "sizes": "192x192", "type": "image/png"},
+    {"src": "icon-512.png", "sizes": "512x512", "type": "image/png"},
+    {"src": "icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable"}
+  ]
+}
