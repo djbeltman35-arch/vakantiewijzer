@@ -272,14 +272,6 @@ form.card{box-shadow:var(--lift-hi)}
   <div class="group" id="gSelf"><h3>Hier vul je zelf je reis in</h3><p class="aiNote" id="aiSelf" hidden>Zet op deze sites zelf het filter "all-inclusive" aan.</p><ul class="sites" id="lSelf"></ul></div>
 </section>
 
-<section class="dests card" aria-labelledby="destH">
-  <h2 id="destH">Populaire bestemmingen</h2>
-  <p class="note">Tik op een bestemming, dan staan de sites meteen klaar met jouw data.</p>
-  <ul class="tiles" id="tiles"></ul>
-</section>
-
-<a class="sister" href="https://vluchtwijzer.netlify.app/"><b>Alleen een vlucht nodig?</b><span>Vluchtwijzer zoekt de goedkoopste vlucht vanaf Schiphol, Eindhoven, Weeze, Düsseldorf en meer →</span></a>
-
 <section class="partners" aria-labelledby="partH" id="reispartner">
   <h2 id="partH">Handig voor je reis</h2>
   <label class="rp-l"><span>Waar ga je naartoe?</span><select id="rpLand"><option value="0">Spanje</option><option value="1">Italië</option><option value="2">Portugal</option><option value="3">Griekenland</option><option value="4">Turkije</option><option value="5">Frankrijk</option><option value="6">Kroatië</option><option value="7">Cyprus</option><option value="8">Malta</option><option value="9">IJsland</option><option value="10">Noorwegen</option><option value="11">Oostenrijk</option><option value="12">Zwitserland</option><option value="13">Duitsland</option><option value="14">Engeland</option><option value="15">Schotland</option><option value="16">Ierland</option><option value="17">Marokko</option><option value="18">Curaçao</option><option value="19">Egypte</option><option value="20">Tunesië</option><option value="21">Kaapverdië</option><option value="22">Dubai (VAE)</option><option value="23">Verenigde Staten</option><option value="24">Mexico</option><option value="25">Dominicaanse Republiek</option><option value="26">Aruba</option><option value="27">Thailand</option><option value="28">Indonesië / Bali</option><option value="29">Japan</option></select></label>
@@ -301,6 +293,16 @@ try{localStorage.setItem("rp_land",i);}catch(e){}}
 document.getElementById("rpLand").addEventListener("change",function(e){zet(+e.target.value);});
 document.querySelector("#reispartner .rp-chips").addEventListener("click",function(e){var b=e.target.closest("[data-rp]");if(b)zet(+b.dataset.rp);});
 var st=0;try{st=+(localStorage.getItem("rp_land")||0);}catch(e){}zet(st);})();</script>
+
+<section class="dests card" aria-labelledby="destH">
+  <h2 id="destH">Populaire bestemmingen</h2>
+  <p class="note">Tik op een bestemming, dan staan de sites meteen klaar met jouw data.</p>
+  <ul class="tiles" id="tiles"></ul>
+</section>
+
+<a class="sister" href="https://vluchtwijzer.netlify.app/"><b>Alleen een vlucht nodig?</b><span>Vluchtwijzer zoekt de goedkoopste vlucht vanaf Schiphol, Eindhoven, Weeze, Düsseldorf en meer →</span></a>
+
+
 
 <details class="card">
   <summary>Hoe werkt Vakantiewijzer?</summary>
