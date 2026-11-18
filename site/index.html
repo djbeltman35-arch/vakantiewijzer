@@ -195,6 +195,7 @@ form.card{box-shadow:var(--lift-hi)}
 .tile{box-shadow:0 6px 16px rgba(19,35,58,.22)}
 .top .types button[aria-pressed="true"]{box-shadow:0 8px 20px rgba(0,0,0,.25)}
 .dcv{margin:14px 0}.dcv h2{margin:0 0 4px}.dcv-sub{margin:0 0 10px;color:var(--muted)}.dcv-chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none;padding-bottom:4px;margin-bottom:10px}.dcv-chips button{flex:0 0 auto;border:1px solid var(--line);background:var(--paper);color:var(--ink);border-radius:999px;padding:7px 13px;font:600 14px var(--f-body);cursor:pointer}.dcv-chips button.on{background:var(--accent);color:var(--accent-ink);border-color:var(--accent)}.dcv-frame{display:block;width:100%;border:0;height:0;overflow:hidden}.dcv-laden{color:var(--muted);margin:6px 0}.dcv-meer{display:block;width:100%;margin-top:10px;padding:12px;border:1px solid var(--accent);background:transparent;color:var(--accent);border-radius:12px;font:700 15px var(--f-body);cursor:pointer}.dcv .ad{font-size:13px;color:var(--muted);margin:8px 0 0}
+.badge.ad{background:transparent;border:1px solid var(--line);color:var(--muted);font-weight:600}
 </style>
 </head>
 <body>
@@ -423,6 +424,7 @@ const TYPES={
   park:{title:"De beste vakantieparken!",hint:"Een regio of plaats, bijv. Veluwe, Zeeland of Sauerland.",
     sites:[
       {n:"Parkvakanties.nl",why:"Vergelijkt vakantieparken in Nederland en daarbuiten, met reviews.",top:true,home:"https://www.parkvakanties.nl/vakantiepark-zoeken/"},
+      {n:"Bungalow.Net",why:"Duizenden bungalows en vakantieparken in Nederland en Europa, vaak met lastminutes.",aff:true,home:"https://lt45.net/c/?si=11126&li=1495538&wi=448364&ws=vakantiewijzer-park"},
       {n:"Center Parcs",why:"Parken met subtropisch zwembad, in Nederland, België en Duitsland.",home:"https://www.centerparcs.nl/"},
       {n:"Landal GreenParks",why:"Veel parken in de natuur, ook in Duitsland en Oostenrijk.",home:"https://www.landal.nl/"},
       {n:"Roompot",why:"Parken en campings, vooral aan de kust.",home:"https://www.roompot.nl/"},
@@ -499,8 +501,8 @@ function nightsOf(s){return Math.round((new Date(s.d2)-new Date(s.d1))/864e5)}
 
 function item(x,s,ready){
   const url=ready?L[x.k](s):x.home;
-  return `<li><a class="site" href="${url}" target="_blank" rel="noopener">
-    <span class="nm">${esc(x.n)}${x.top?' <span class="badge top">Begin hier</span>':""}${ready?' <span class="badge ok">reis ingevuld</span>':""}</span>
+  return `<li><a class="site" href="${url}" target="_blank" rel="${x.aff?"sponsored noopener":"noopener"}">
+    <span class="nm">${esc(x.n)}${x.top?' <span class="badge top">Begin hier</span>':""}${x.aff?' <span class="badge ad">partner</span>':""}${ready?' <span class="badge ok">reis ingevuld</span>':""}</span>
     <span class="why">${esc(x.why)}</span>
     <span class="go2">${ready?"Bekijk":"Open"} →</span>
     ${x.warn?`<span class="warn">${esc(x.warn)}</span>`:""}
