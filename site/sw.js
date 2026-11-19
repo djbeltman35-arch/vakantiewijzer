@@ -1,4 +1,4 @@
-const CACHE = "vakantiewijzer-v33";
+const CACHE = "vakantiewijzer-v34";
 const SHELL = ["./", "index.html", "manifest.webmanifest", "icon-192.png", "icon-512.png", "fonts/big-shoulders-display-800.woff2", "fonts/atkinson-hyperlegible-400.woff2", "fonts/atkinson-hyperlegible-700.woff2"];
 self.addEventListener("install", e => {
   e.waitUntil(caches.open(CACHE).then(c => c.addAll(SHELL)).then(() => self.skipWaiting()));
