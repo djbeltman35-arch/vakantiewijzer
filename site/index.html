@@ -424,7 +424,7 @@ const TYPES={
   park:{title:"De beste vakantieparken!",hint:"Een regio of plaats, bijv. Veluwe, Zeeland of Sauerland.",
     sites:[
       {n:"Parkvakanties.nl",why:"Vergelijkt vakantieparken in Nederland en daarbuiten, met reviews.",top:true,home:"https://www.parkvakanties.nl/vakantiepark-zoeken/"},
-      {n:"Bungalow.Net",why:"Duizenden bungalows en vakantieparken in Nederland en Europa, vaak met lastminutes.",aff:true,home:"https://lt45.net/c/?si=11126&li=1495538&wi=448364&ws=vakantiewijzer-park"},
+      {n:"Bungalow.Net",why:"Bungalows en vakantieparken in Nederland en de rest van Europa.",aff:true,home:"https://lt45.net/c/?si=11126&li=1495538&wi=448364&ws=vakantiewijzer-park"},
       {n:"Center Parcs",why:"Parken met subtropisch zwembad, in Nederland, België en Duitsland.",home:"https://www.centerparcs.nl/"},
       {n:"Landal GreenParks",why:"Veel parken in de natuur, ook in Duitsland en Oostenrijk.",home:"https://www.landal.nl/"},
       {n:"Roompot",why:"Parken en campings, vooral aan de kust.",home:"https://www.roompot.nl/"},
@@ -523,10 +523,12 @@ function run(scroll){
     $("sum").innerHTML=`Naar <strong>${esc(s.dest)}</strong> · ${nl(s.d1)} – ${nl(s.d2)} (${n} ${n===1?"nacht":"nachten"}) · ${s.p} ${s.p>1?"personen":"persoon"}${s.ai?" · all-inclusive":""}`;
   }
   const okData=!e;
-  const ready=T.ready||[];
+  // Regel van Erik: zodra een categorie een goedgekeurde partner heeft, tonen we alleen nog betaalde sites.
+  const betaald=T.sites.some(x=>x.aff)||(T.ready||[]).some(x=>x.aff);
+  const ready=(T.ready||[]).filter(x=>!betaald||x.aff);
   $("lReady").innerHTML=okData?ready.map(x=>item(x,s,true)).join(""):"";
   $("gReady").hidden=!okData||!ready.length;
-  $("lSelf").innerHTML=T.sites.map(x=>item(x,s,false)).join("");
+  $("lSelf").innerHTML=T.sites.filter(x=>!betaald||x.aff).map(x=>item(x,s,false)).join("");
   $("aiSelf").hidden=!s.ai;
   const hasBooking=ready.some(x=>x.k==="booking"), others=ready.filter(x=>x.k!=="booking").length;
   $("aiReady").hidden=!s.ai||!okData;
