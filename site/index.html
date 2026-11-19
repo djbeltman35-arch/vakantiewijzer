@@ -55,7 +55,7 @@ button{font:inherit;color:inherit}
 .hero h1{font-family:var(--f-display);font-weight:800;text-transform:uppercase;font-size:40px;line-height:1.05;margin:4px 0 0;white-space:nowrap;overflow:hidden}
 
 /* soort vakantie */
-.types{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:8px}
+.types{display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:6px}
 .types button{display:grid;justify-items:center;gap:4px;padding:12px 4px;border-radius:12px;border:1px solid var(--line);background:var(--paper);cursor:pointer;font-weight:700;font-size:13px;line-height:1.2;text-align:center;color:var(--muted)}
 .types button svg{width:28px;height:28px;fill:none;stroke:currentColor;stroke-width:1.8;stroke-linecap:round;stroke-linejoin:round}
 .types button[aria-pressed="true"]{border:2px solid var(--accent);color:var(--accent);background:var(--accent-soft)}
@@ -124,7 +124,8 @@ footer a{color:var(--accent)}
 footer .made{font-size:15px;font-weight:700;color:var(--ink)}
 footer .made a{color:var(--accent);text-decoration:none}
 
-@media (max-width:380px){.dates{grid-template-columns:1fr}.types button{font-size:12px}}
+@media (max-width:420px){.types button{font-size:11px;padding:10px 2px}.types button svg{width:24px;height:24px}}
+@media (max-width:380px){.dates{grid-template-columns:1fr}}
 @media (min-width:960px){
   .wrap{max-width:1180px;grid-template-columns:420px minmax(0,1fr);column-gap:40px;padding-block:0 64px;align-items:start}
   form.card{position:sticky;top:20px}
@@ -217,6 +218,7 @@ form.card{box-shadow:var(--lift-hi)}
   <button type="button" data-t="hotel" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 21V5h12v16M15 9h6v12M7 9h2M7 13h2M7 17h2M11 9h0M11 13h0M18 13h0M18 17h0M2 21h20"/></svg>Hotel</button>
   <button type="button" data-t="park" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 11l7-6 7 6M5 10v10h10V10M8 20v-5h4v5M19 20v-6M17 14h4l-2-6z"/></svg>Vakantiepark</button>
   <button type="button" data-t="camping" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 20L12 5l9 15zM12 5v15M9 20l3-5 3 5M2 20h20"/></svg>Camping</button>
+  <button type="button" data-t="cruise" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 15h18l-3 5H6zM6 15V9h12v6M9 9V5h6v4M2 21c2 0 2-1 4-1s2 1 4 1 2-1 4-1 2 1 4-1 2 1 4 1"/></svg>Cruise</button>
 </div>
 <svg class="arc" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="34" fill="currentColor"/><g stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M100 18v26M100 156v26M18 100h26M156 100h26M42 42l18 18M140 140l18 18M42 158l18-18M140 60l18-18"/></g></svg>
 </div>
@@ -439,6 +441,14 @@ const TYPES={
     tips:["Midweek (maandag tot vrijdag) is vaak een stuk goedkoper dan een weekend.",
           "Let op verplichte kosten zoals schoonmaak, beddengoed en toeristenbelasting.",
           "Buiten de schoolvakanties zijn veel parken flink goedkoper."]},
+  cruise:{title:"De beste cruisesites!",hint:"Een vaargebied of haven, bijv. Middellandse Zee, Noorwegen of Caribisch gebied.",
+    sites:[
+      {n:"Cruisereizen.nl",why:"Groot aanbod zee- en riviercruises van veel rederijen, met Nederlandstalig advies.",aff:true,top:true,home:"https://lt45.net/c/?si=10764&li=1477952&wi=448364&ws=vakantiewijzer-cruise"}
+    ],
+    ready:[],
+    tips:["Kijk of drankjes, fooien en havengelden in de prijs zitten; dat scheelt vaak honderden euro's.",
+          "Een binnenhut is flink goedkoper dan een balkonhut, en je bent er vooral om te slapen.",
+          "Boek je ver vooruit, dan krijg je vaak de beste hutkeuze; last-minute is soms goedkoper maar met minder keus."]},
   camping:{title:"De beste campingsites!",hint:"Een land of regio, bijv. Frankrijk, Gardameer of Zeeland.",
     sites:[
       {n:"Eurocampings",why:"Van ACSI: ruim 9.900 gecontroleerde campings in Europa.",top:true,home:"https://www.eurocampings.nl/"},
@@ -464,7 +474,7 @@ function setType(t){
   type=t;
   document.querySelectorAll("#types button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.t===t)));
   $("destHint").textContent=TYPES[t].hint;
-  const hotelish=t!=="pakket";
+  const hotelish=t!=="pakket"&&t!=="cruise";
   $("d1lbl").textContent=hotelish?"Aankomst":"Vertrek";
   $("d2lbl").textContent=hotelish?"Vertrek":"Terug";
   $("aiWrap").hidden=!(t==="pakket"||t==="hotel");
@@ -486,7 +496,8 @@ $("sv").addEventListener("change",e=>{const v=SV[e.target.value];if(!v)return;co
 const POP={pakket:[["Turkije","Turkse Rivièra en Egeïsche kust"],["Kreta","Griekenland"],["Tenerife","Canarische Eilanden"],["Egypte","Rode Zee"],["Mallorca","Balearen, Spanje"],["Curaçao","Caribisch gebied"]],
  hotel:[["Barcelona","Spanje"],["Rome","Italië"],["Parijs","Frankrijk"],["Londen","Verenigd Koninkrijk"],["Lissabon","Portugal"],["Praag","Tsjechië"]],
  park:[["Veluwe","Gelderland"],["Zeeland","Nederland"],["Drenthe","Nederland"],["Limburg","Nederland"],["Ardennen","België"],["Sauerland","Duitsland"]],
- camping:[["Ardèche","Frankrijk"],["Gardameer","Italië"],["Kroatië","Istrië en Dalmatië"],["Costa Brava","Spanje"],["Oostenrijk","Alpen"],["Zeeland","Nederland"]]};
+ camping:[["Ardèche","Frankrijk"],["Gardameer","Italië"],["Kroatië","Istrië en Dalmatië"],["Costa Brava","Spanje"],["Oostenrijk","Alpen"],["Zeeland","Nederland"]],
+ cruise:[["Middellandse Zee","Italië, Spanje, Griekenland"],["Noorwegen","Fjorden"],["Caribisch gebied","Eilanden"],["Rijn","Riviercruise"],["Donau","Riviercruise"],["Canarische Eilanden","Winterzon"]]};
 function drawTiles(){$("tiles").innerHTML=POP[type].map(([n,w])=>`<li><button type="button" class="tile" data-dest="${esc(n)}"><b>${esc(n)}</b><span class="where">${esc(w)}</span><span class="look">Zoek →</span></button></li>`).join("")}
 $("tiles").addEventListener("click",e=>{const b=e.target.closest(".tile");if(!b)return;$("dest").value=b.dataset.dest;run(true)});
 
@@ -551,7 +562,7 @@ if(document.fonts&&document.fonts.ready)document.fonts.ready.then(fitBig);
   if(s&&s.d1>=today){$("dest").value=s.dest||"";$("d1").value=s.d1;$("d2").value=s.d2;$("pax").value=s.p||2;type=s.t||"pakket";$("ai").checked=!!s.ai}
   else{$("d1").value=iso(a);$("d2").value=iso(b)}
   /* link vanuit de vakantiegids, bijv. #soort=camping */
-  const m=location.hash.match(/soort=(pakket|hotel|park|camping)/i);
+  const m=location.hash.match(/soort=(pakket|hotel|park|camping|cruise)/i);
   if(m)type=m[1].toLowerCase();
   setType(type);
 })();
