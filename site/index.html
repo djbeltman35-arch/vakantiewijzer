@@ -262,6 +262,7 @@ h2.big{font-family:var(--f-body)!important;font-weight:700!important;text-transf
 @media (max-width:420px){.top .types button{font-size:12px!important}}
 .top .types{gap:8px!important;background:transparent!important;border:0!important}
 .top .types button{background:#fff!important;border:1px solid var(--line)!important;border-radius:10px!important;padding:14px 4px 12px!important;box-shadow:0 2px 0 #d5ddd0,0 6px 14px -6px rgba(20,40,28,.28)!important;font-weight:700!important;transition:transform .08s}
+#aanbod{scroll-margin-top:12px}
 .top .types button:active{transform:translateY(2px);box-shadow:0 0 0 #d5ddd0,0 2px 6px -3px rgba(20,40,28,.3)!important}
 .top .types button svg{width:32px!important;height:32px!important}
 .top .types button[aria-pressed="true"]{border:2px solid var(--accent)!important;background:var(--accent-soft)!important;color:var(--accent)!important;box-shadow:0 2px 0 #0b6a3f,0 6px 14px -6px rgba(8,80,47,.35)!important}
@@ -364,6 +365,10 @@ document.querySelector("#aanbod .dcv-chips").addEventListener("click",function(e
 document.querySelectorAll("#aanbod [data-cc]").forEach(function(x){x.classList.toggle("on",x===b);});laad();});
 document.getElementById("dcvMeer").addEventListener("click",function(){n+=6;laad();});
 function start(){if(gestart)return;gestart=true;laad();}
+var KOP={pakket:"Vergelijk vlucht + hotel",ai:"Vergelijk all-inclusive reizen",hotel:"Vergelijk hotels en reizen",park:"Vergelijk vakantieparken",camping:"Vergelijk campings en vakanties met eigen vervoer",cruise:"Vergelijk vakantie-aanbiedingen"};
+window.dcvSoort=function(t){var x={};if(t==="pakket"||t==="ai")x.travelTransportationType={value:["flight"]};if(t==="park"||t==="camping")x.travelTransportationType={value:["car"]};
+C.extra=x;n=3;gestart=true;document.getElementById("dcvH").textContent=KOP[t]||"Vergelijk vakantie-aanbiedingen";laad();
+var el=document.getElementById("aanbod");if(el)el.scrollIntoView({behavior:"smooth",block:"start"});};
 if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){if(es.some(function(x){return x.isIntersecting;})){io.disconnect();start();}},{rootMargin:"600px"});io.observe(document.getElementById("aanbod"));}else start();})();</script>
 <!-- dcv:end -->
 
@@ -550,7 +555,7 @@ function setType(t){
   run(false);
 }
 function syncTypes(){const ai=type==="pakket"&&$("ai").checked;document.querySelectorAll("#types button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.t==="ai"?ai:(b.dataset.t===type&&!ai))))}
-$("types").addEventListener("click",e=>{const b=e.target.closest("button[data-t]");if(!b)return;if(b.dataset.t==="ai"){$("ai").checked=true;setType("pakket")}else{if(b.dataset.t==="pakket")$("ai").checked=false;setType(b.dataset.t)}});
+$("types").addEventListener("click",e=>{const b=e.target.closest("button[data-t]");if(!b)return;if(b.dataset.t==="ai"){$("ai").checked=true;setType("pakket")}else{if(b.dataset.t==="pakket")$("ai").checked=false;setType(b.dataset.t)}if(window.dcvSoort)window.dcvSoort(b.dataset.t)});
 $("ai").addEventListener("change",syncTypes);
 $("paxMin").onclick=()=>{$("pax").value=Math.max(1,+$("pax").value-1);run(false)};
 $("paxPlus").onclick=()=>{$("pax").value=Math.min(9,+$("pax").value+1);run(false)};
