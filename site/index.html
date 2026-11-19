@@ -266,6 +266,8 @@ h2.big{font-family:var(--f-body)!important;font-weight:700!important;text-transf
 .top .types button:active{transform:translateY(2px);box-shadow:0 0 0 #d5ddd0,0 2px 6px -3px rgba(20,40,28,.3)!important}
 .top .types button svg{width:32px!important;height:32px!important}
 .top .types button[aria-pressed="true"]{border:2px solid var(--accent)!important;background:var(--accent-soft)!important;color:var(--accent)!important;box-shadow:0 2px 0 #0b6a3f,0 6px 14px -6px rgba(8,80,47,.35)!important}
+#f[hidden]{display:none!important}
+@media (min-width:960px){.wrap{grid-template-columns:minmax(0,1fr)!important;max-width:900px!important}}
 /* gbstijl:end */
 </style>
 </head>
@@ -277,8 +279,8 @@ h2.big{font-family:var(--f-body)!important;font-weight:700!important;text-transf
 <div class="hero">
   <p class="maker">Van de maker van <a href="https://boodschappenvergelijk.nl/?bron=vakantiewijzer">Boodschappenvergelijk.nl</a>, bekend van <a href="https://www.hartvannederland.nl/advies-en-tips/kopen-besparen/videos/goedkoop-boodschappen-doen-erik-bouwt-vergelijker" target="_blank" rel="noopener">Hart van Nederland</a> en <a href="https://www.oost.nl/nieuws/3720144/rijssenaar-erik-beltman-rekent-af-met-dure-boodschappen-in-vergelijkingswebsite" target="_blank" rel="noopener">RTV Oost</a></p>
 <h1>Vind de beste vakantie</h1>
-  <p class="lead">Eén keer invullen, alle vakantiesites op een rij</p>
-  <ol class="stapjes" aria-label="Zo werkt het"><li><span class="n">1</span>Soort reis</li><li><span class="n">2</span>Bestemming</li><li><span class="n">3</span>Vergelijken</li></ol>
+  <p class="lead">Alle vakantie-aanbiedingen op een rij</p>
+  <ol class="stapjes" aria-label="Zo werkt het"><li><span class="n">1</span>Soort reis</li><li><span class="n">2</span>Land</li><li><span class="n">3</span>Bekijken</li></ol>
 </div>
 <div class="types" role="group" aria-label="Soort vakantie" id="types">
   <button type="button" data-t="pakket" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M2 16l20-6-2-3-7 2-6-5-2 1 4 6-5 1.5-2-2-2 1z"/><path d="M3 21h18"/></svg>Vlucht + hotel</button>
@@ -293,7 +295,7 @@ h2.big{font-family:var(--f-body)!important;font-weight:700!important;text-transf
 </header>
 
 <div class="wrap">
-<form class="card" id="f" novalidate autocomplete="off">
+<form class="card" id="f" novalidate autocomplete="off" hidden>
   <div class="step">
     <span class="num" aria-hidden="true">1</span>
     <h2><label for="dest">Waar wil je heen?</label></h2>
@@ -603,7 +605,7 @@ function run(scroll){
   $("nights").textContent=n?`${n} ${n===1?"nacht":"nachten"}`:"";
   if(e){
     $("err").hidden=!scroll; $("err").textContent=e;
-    $("sum").textContent=(s.t==="cruise"||s.t==="park")?"Tik op de site en bekijk direct het hele aanbod.":"Vul je bestemming en data in, dan staan de sites hieronder klaar.";
+    $("sum").textContent=(s.t==="cruise"||s.t==="park")?"Tik op de site en bekijk direct het hele aanbod.":"Kies hierboven wat voor vakantie je zoekt.";
   }else{
     $("err").hidden=true; store("vk",s);
     $("sum").innerHTML=`Naar <strong>${esc(s.dest)}</strong> · ${nl(s.d1)} – ${nl(s.d2)} (${n} ${n===1?"nacht":"nachten"}) · ${s.p} ${s.p>1?"personen":"persoon"}${s.ai?" · all-inclusive":""}`;
