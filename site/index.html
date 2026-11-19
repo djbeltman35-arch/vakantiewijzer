@@ -254,6 +254,12 @@ h2.big{font-family:var(--f-body)!important;font-weight:700!important;text-transf
 .top .types button[data-t="cruise"] svg{color:#e0452e!important}
 .top .types button svg{stroke-width:2.1!important}
 @media (max-width:420px){.top .types button{font-size:10.5px!important;letter-spacing:-.01em}}
+.top .types{grid-template-columns:repeat(3,minmax(0,1fr))!important;max-width:640px!important;width:100%}
+.top .types button{border-top:1px solid var(--line)!important}
+.top .types button:nth-child(-n+3){border-top:0!important}
+.top .types button:nth-child(3n+1){border-left:0!important}
+.top .types button[data-t="ai"] svg{color:#d6336c!important}
+@media (max-width:420px){.top .types button{font-size:12px!important}}
 /* gbstijl:end */
 </style>
 </head>
@@ -274,6 +280,7 @@ h2.big{font-family:var(--f-body)!important;font-weight:700!important;text-transf
   <button type="button" data-t="park" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 11l7-6 7 6M5 10v10h10V10M8 20v-5h4v5M19 20v-6M17 14h4l-2-6z"/></svg>Vakantiepark</button>
   <button type="button" data-t="camping" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 20L12 5l9 15zM12 5v15M9 20l3-5 3 5M2 20h20"/></svg>Camping</button>
   <button type="button" data-t="cruise" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M3 15h18l-3 5H6zM6 15V9h12v6M9 9V5h6v4M2 21c2 0 2-1 4-1s2 1 4 1 2-1 4-1 2 1 4-1 2 1 4 1"/></svg>Cruise</button>
+  <button type="button" data-t="ai" aria-pressed="false"><svg viewBox="0 0 24 24"><path d="M5 4h14l-7 8zM12 12v7M8 20h8M15 7l3-4"/></svg>All-inclusive</button>
 </div>
 <svg class="arc" viewBox="0 0 200 200" aria-hidden="true"><circle cx="100" cy="100" r="34" fill="currentColor"/><g stroke="currentColor" stroke-width="6" stroke-linecap="round"><path d="M100 18v26M100 156v26M18 100h26M156 100h26M42 42l18 18M140 140l18 18M42 158l18-18M140 60l18-18"/></g></svg>
 </div>
@@ -528,7 +535,7 @@ $("destList").innerHTML=DEST.map(d=>`<option value="${esc(d)}">`).join("");
 let type="pakket";
 function setType(t){
   type=t;
-  document.querySelectorAll("#types button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.t===t)));
+  syncTypes();
   $("destHint").textContent=TYPES[t].hint;
   const hotelish=t!=="pakket"&&t!=="cruise";
   $("d1lbl").textContent=hotelish?"Aankomst":"Vertrek";
@@ -537,7 +544,9 @@ function setType(t){
   drawTiles();
   run(false);
 }
-$("types").addEventListener("click",e=>{const b=e.target.closest("button[data-t]");if(b)setType(b.dataset.t)});
+function syncTypes(){const ai=type==="pakket"&&$("ai").checked;document.querySelectorAll("#types button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.t==="ai"?ai:(b.dataset.t===type&&!ai))))}
+$("types").addEventListener("click",e=>{const b=e.target.closest("button[data-t]");if(!b)return;if(b.dataset.t==="ai"){$("ai").checked=true;setType("pakket")}else{if(b.dataset.t==="pakket")$("ai").checked=false;setType(b.dataset.t)}});
+$("ai").addEventListener("change",syncTypes);
 $("paxMin").onclick=()=>{$("pax").value=Math.max(1,+$("pax").value-1);run(false)};
 $("paxPlus").onclick=()=>{$("pax").value=Math.min(9,+$("pax").value+1);run(false)};
 ["d1","d2","dest","ai"].forEach(id=>$(id).addEventListener("change",()=>run(false)));
