@@ -557,7 +557,7 @@ function setType(t){
   run(false);
 }
 function syncTypes(){const ai=type==="pakket"&&$("ai").checked;document.querySelectorAll("#types button").forEach(b=>b.setAttribute("aria-pressed",String(b.dataset.t==="ai"?ai:(b.dataset.t===type&&!ai))))}
-$("types").addEventListener("click",e=>{const b=e.target.closest("button[data-t]");if(!b)return;if(b.dataset.t==="ai"){$("ai").checked=true;setType("pakket")}else{if(b.dataset.t==="pakket")$("ai").checked=false;setType(b.dataset.t)}if(b.dataset.t==="cruise"||b.dataset.t==="park"){if(window.dcvSoort)window.dcvSoort(b.dataset.t,true);const r=$("res");if(r&&!r.hidden)r.scrollIntoView({behavior:"smooth",block:"start"})}else if(window.dcvSoort)window.dcvSoort(b.dataset.t)});
+$("types").addEventListener("click",e=>{const b=e.target.closest("button[data-t]");if(!b)return;if(b.dataset.t==="ai"){$("ai").checked=true;setType("pakket")}else{if(b.dataset.t==="pakket")$("ai").checked=false;setType(b.dataset.t)}if(b.dataset.t==="cruise"||b.dataset.t==="park"){if(window.dcvSoort)window.dcvSoort(b.dataset.t,true);const p=(TYPES[b.dataset.t].sites||[]).find(x=>x.aff);if(p){window.open(p.home,"_blank","noopener")}else{const r=$("res");if(r&&!r.hidden)r.scrollIntoView({behavior:"smooth",block:"start"})}}else if(window.dcvSoort)window.dcvSoort(b.dataset.t)});
 $("ai").addEventListener("change",syncTypes);
 $("paxMin").onclick=()=>{$("pax").value=Math.max(1,+$("pax").value-1);run(false)};
 $("paxPlus").onclick=()=>{$("pax").value=Math.min(9,+$("pax").value+1);run(false)};
