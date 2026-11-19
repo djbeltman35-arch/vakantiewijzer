@@ -610,12 +610,18 @@ function run(scroll){
   }
   const okData=!e;
   // Regel van Erik: zodra een categorie een goedgekeurde partner heeft, tonen we alleen nog betaalde sites.
-  const betaald=T.sites.some(x=>x.aff)||(T.ready||[]).some(x=>x.aff);
+  // De vergelijker met aanbiedingen (Daisycon) is betaald voor vlucht + hotel, all-inclusive, hotels, parken en campings.
+  const dcv=["pakket","hotel","park","camping"].includes(s.t);
+  const betaald=dcv||T.sites.some(x=>x.aff)||(T.ready||[]).some(x=>x.aff);
   const ready=(T.ready||[]).filter(x=>!betaald||x.aff);
   $("lReady").innerHTML=okData?ready.map(x=>item(x,s,true)).join(""):"";
   $("gReady").hidden=!okData||!ready.length;
-  $("lSelf").innerHTML=T.sites.filter(x=>!betaald||x.aff).map(x=>item(x,s,false)).join("");
-  $("aiSelf").hidden=!s.ai;
+  const self=T.sites.filter(x=>!betaald||x.aff);
+  $("lSelf").innerHTML=self.map(x=>item(x,s,false)).join("");
+  $("gSelf").hidden=!self.length;
+  $("aiSelf").hidden=!s.ai||!self.length;
+  $("res").hidden=!self.length&&!(okData&&ready.length);
+  if(dcv&&window.dcvSoort&&scroll){window.dcvSoort(s.ai?"ai":s.t);return}
   const hasBooking=ready.some(x=>x.k==="booking"), others=ready.filter(x=>x.k!=="booking").length;
   $("aiReady").hidden=!s.ai||!okData;
   $("aiReady").textContent=hasBooking?(others?'Bij Booking.com staat het filter "all-inclusive" al aan. Op de andere sites zet je het zelf aan.':'Bij Booking.com staat het filter "all-inclusive" al aan.'):'Zet op deze sites zelf het filter "all-inclusive" aan.';
