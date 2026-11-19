@@ -224,21 +224,42 @@ h2.big{font-family:var(--f-body)!important;font-weight:700!important;text-transf
 .maker{font-size:13px;color:var(--muted);margin:0 0 6px}.maker a{color:var(--ink);font-weight:700;text-decoration:none}.maker a:hover{text-decoration:underline}
 .go{background:linear-gradient(180deg,#17a061 0%,#0e7c4a 55%,#0b6a3f 100%)!important;color:#fff!important;box-shadow:0 2px 3px rgba(20,40,28,.16),0 7px 14px -6px rgba(20,40,28,.42)}
 .top .hero{position:relative;isolation:isolate}.top .hero::before{content:"";position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:clamp(220px,30vw,320px);height:clamp(220px,30vw,320px);background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath fill='%230e7c4a' d='M13.127 14.56l1.43-1.43 6.44 6.443L19.57 21zm4.293-5.73l2.86-2.86c-3.95-3.95-10.35-3.96-14.3-.02 3.93-1.3 8.31-.25 11.44 2.88zM5.95 5.98c-3.94 3.95-3.93 10.35.02 14.3l2.86-2.86C5.7 14.29 4.65 9.91 5.95 5.98zm.02-.02l-.01.01c-.38 3.01 1.17 6.88 4.3 10.02l5.73-5.73c-3.13-3.13-7.01-4.68-10.02-4.3z'/%3E%3C/svg%3E") center/contain no-repeat;opacity:.16;z-index:-1;pointer-events:none}@media (prefers-color-scheme:dark){.top .hero::before{opacity:.22}}
+.gbbar .in{justify-content:space-between}
+.gbnav{display:flex;align-items:center;gap:6px}
+.gbnav a{text-decoration:none;font-weight:700;font-size:15px;padding:8px 10px;border-radius:10px;color:var(--accent);white-space:nowrap}
+.gbnav a:hover{background:var(--accent-soft)}
+.gbnav a.pil{background:linear-gradient(180deg,#17a061 0%,#0e7c4a 55%,#0b6a3f 100%);color:#fff;border-radius:999px;padding:7px 13px;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 3px 0 #08502f,0 5px 10px rgba(8,80,47,.28)}
+@media (max-width:520px){.gbbar .brand b{display:none}}
+.maker a{text-decoration:underline;text-decoration-color:var(--line);text-underline-offset:3px;color:var(--ink)}
+.top .lead{font-size:16px!important}
+@media (max-width:520px){.top .hero h1{font-size:clamp(22px,7.4vw,34px)!important;white-space:nowrap!important}}
+.stapjes{list-style:none;display:flex;margin:16px auto 0;padding:0;max-width:640px;background:var(--paper);border:1px solid var(--line)}
+.stapjes li{flex:1;display:flex;align-items:center;justify-content:center;gap:7px;padding:10px 4px;font-size:13.5px;font-weight:700;color:var(--ink);border-left:1px solid var(--line)}
+.stapjes li:first-child{border-left:0}
+.stapjes .n,.num{background:#f5c400!important;color:#1e2a22!important;font-weight:700}
+.stapjes .n{width:24px;height:24px;border-radius:50%;display:grid;place-items:center;font-size:13px;flex:none}
+.top .types{gap:0!important;background:var(--paper);border:1px solid var(--line)}
+.top .types button{border:0!important;border-left:1px solid var(--line)!important;border-radius:0!important;padding:12px 2px!important;color:var(--ink)!important}
+.top .types button:first-child{border-left:0!important}
+.top .types button svg{color:var(--accent)}
+.top .types button[aria-pressed="true"]{background:var(--accent-soft)!important;box-shadow:inset 0 -3px 0 var(--accent)!important;border-top:0!important;border-right:0!important;border-bottom:0!important}
+.card,form.card,.site,.more,.sister{border-radius:4px!important}
+.field{border-radius:4px!important;background:var(--paper)!important}
+.go{border-radius:10px!important;background:linear-gradient(180deg,#17a061 0%,#0e7c4a 55%,#0b6a3f 100%)!important;color:#fff!important;box-shadow:inset 0 1px 0 rgba(255,255,255,.28),0 3px 0 #08502f,0 5px 10px rgba(8,80,47,.28)!important}
+.go:active{transform:translateY(2px)}
 /* gbstijl:end */
 </style>
 </head>
 <body>
 <header class="top">
 <div class="gbbar"><div class="in"><a class="brand" href="/" aria-label="Vakantiewijzer, naar de startpagina"><span class="mark" aria-hidden="true"><svg viewBox="0 0 24 24"><path d="M12 7a5 5 0 1 0 0 10 5 5 0 0 0 0-10zM11 1h2v3h-2zM11 20h2v3h-2zM1 11h3v2H1zM20 11h3v2h-3zM4.2 5.6l1.4-1.4 2.1 2.1-1.4 1.4zM16.3 17.7l1.4-1.4 2.1 2.1-1.4 1.4zM4.2 18.4l2.1-2.1 1.4 1.4-2.1 2.1zM16.3 6.3l2.1-2.1 1.4 1.4-2.1 2.1z"/></svg></span>
-  <b>Vakantie<span>wijzer</span></b></a></div></div>
+  <b>Vakantie<span>wijzer</span></b></a><nav class="gbnav" aria-label="Menu"><a href="gids/">Vakantiegids</a><a class="pil" href="#aanbod">🔥 Aanbiedingen</a></nav></div></div>
 <div class="top-in">
 <div class="hero">
-  <p class="maker">Van de maker van <a href="https://boodschappenvergelijk.nl/?bron=vakantiewijzer">Boodschappenvergelijk.nl</a>, bekend van Hart van Nederland en RTV Oost</p>
+  <p class="maker">Van de maker van <a href="https://boodschappenvergelijk.nl/?bron=vakantiewijzer">Boodschappenvergelijk.nl</a>, bekend van <a href="https://www.hartvannederland.nl/advies-en-tips/kopen-besparen/videos/goedkoop-boodschappen-doen-erik-bouwt-vergelijker" target="_blank" rel="noopener">Hart van Nederland</a> en <a href="https://www.oost.nl/nieuws/3720144/rijssenaar-erik-beltman-rekent-af-met-dure-boodschappen-in-vergelijkingswebsite" target="_blank" rel="noopener">RTV Oost</a></p>
 <h1>Vind de beste vakantie</h1>
-  <p class="lead">Vul je reis één keer in en zoek tegelijk op Booking.com, Zoover, TUI, Sunweb, Center Parcs, Landal en meer. Gratis en zonder account.</p>
-  <ul class="chips" aria-label="Wat je kunt zoeken">
-    <li>Pakketreis en all-inclusive</li><li>Vakantieparken en campings</li><li>Schoolvakanties met één tik</li>
-  </ul>
+  <p class="lead">Eén keer invullen, alle vakantiesites op een rij</p>
+  <ol class="stapjes" aria-label="Zo werkt het"><li><span class="n">1</span>Soort reis</li><li><span class="n">2</span>Bestemming</li><li><span class="n">3</span>Vergelijken</li></ol>
 </div>
 <div class="types" role="group" aria-label="Soort vakantie" id="types">
   <button type="button" data-t="pakket" aria-pressed="true"><svg viewBox="0 0 24 24"><path d="M2 16l20-6-2-3-7 2-6-5-2 1 4 6-5 1.5-2-2-2 1z"/><path d="M3 21h18"/></svg>Vlucht + hotel</button>
