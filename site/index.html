@@ -354,23 +354,25 @@ h2.big{font-family:var(--f-body)!important;font-weight:700!important;text-transf
   <iframe class="dcv-frame" id="dcvFrame" title="Vergelijk vakantie-aanbiedingen" scrolling="no"></iframe>
   <p class="dcv-laden" id="dcvLaden">Aanbiedingen laden…</p>
   <button type="button" class="dcv-meer" id="dcvMeer" hidden>Toon meer aanbiedingen</button>
+  <button type="button" class="dcv-meer" id="dcvFilt" aria-pressed="false">🔎 Uitgebreid zoeken: filter op prijs, sterren, vertrekluchthaven en meer</button>
   <p class="ad">Advertentie. Boek je via deze vergelijker, dan krijgt deze site een vergoeding. Jij betaalt niets extra.</p>
 </section>
-<script>(function(){var C={"mediaId": 448364, "subId": "vakantiewijzer", "extra": {}},cc="",n=3,fr=document.getElementById("dcvFrame"),ro=null,gestart=false;
+<script>(function(){var C={"mediaId": 448364, "subId": "vakantiewijzer", "extra": {}},cc="",n=3,F=false,fr=document.getElementById("dcvFrame"),ro=null,gestart=false;
 function hoogte(){try{var d=fr.contentDocument;if(d&&d.body){var h=d.body.scrollHeight;if(h>40){fr.style.height=h+"px";document.getElementById("dcvLaden").hidden=true;document.getElementById("dcvMeer").hidden=false;}}}catch(e){}}
 function laad(){var f={};for(var k in C.extra)f[k]=C.extra[k];if(cc)f.destinationCountry={value:[cc]};
-var c={mediaId:C.mediaId,subId:C.subId+(cc?"-"+cc.toLowerCase():""),language:"nl",limit:n,limitSplit:n,showFilters:false,filter:f};
+var c={mediaId:C.mediaId,subId:C.subId+(cc?"-"+cc.toLowerCase():""),language:"nl",limit:n,limitSplit:n,showFilters:F,filter:f};
 fr.style.height="0px";document.getElementById("dcvLaden").hidden=false;document.getElementById("dcvMeer").hidden=true;
 fr.srcdoc='<!doctype html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><base target="_blank"><style>html,body{margin:0;background:transparent}</style></head><body><div class="dc-tool dc-vacation-tool" data-config=\''+JSON.stringify(c).replace(/'/g,"&#39;")+'\'></div><script src="https://daisycon.tools/vacation/app.js"><\/script></body></html>';}
 fr.addEventListener("load",function(){try{if(ro)ro.disconnect();ro=new ResizeObserver(hoogte);ro.observe(fr.contentDocument.body);}catch(e){}hoogte();setTimeout(hoogte,1500);setTimeout(hoogte,4000);});
-document.querySelector("#aanbod .dcv-chips").addEventListener("click",function(e){var b=e.target.closest("[data-cc]");if(!b)return;cc=b.dataset.cc;n=3;
+document.querySelector("#aanbod .dcv-chips").addEventListener("click",function(e){var b=e.target.closest("[data-cc]");if(!b)return;cc=b.dataset.cc;n=F?12:3;
 document.querySelectorAll("#aanbod [data-cc]").forEach(function(x){x.classList.toggle("on",x===b);});laad();});
 document.getElementById("dcvMeer").addEventListener("click",function(){n+=6;laad();});
+document.getElementById("dcvFilt").addEventListener("click",function(){F=!F;n=F?12:3;this.setAttribute("aria-pressed",String(F));this.textContent=F?"Terug naar de korte lijst":"🔎 Uitgebreid zoeken: filter op prijs, sterren, vertrekluchthaven en meer";gestart=true;laad();});
 function start(){if(gestart)return;gestart=true;laad();}
 var KOP={pakket:"Vergelijk vlucht + hotel",ai:"Vergelijk all-inclusive reizen",hotel:"Vergelijk hotels",park:"Vergelijk vakantieparken",camping:"Vergelijk campings",cruise:"Vergelijk vakantie-aanbiedingen"};
 window.dcvSoort=function(t,stil){var sec=document.getElementById("aanbod");if(sec)sec.hidden=(t==="cruise");if(t==="cruise")return;var x={};if(t==="pakket")x.travelTransportationType={value:["flight"]};if(t==="ai")x.travelTransportationType={value:["ai"]};if(t==="hotel")x.accommodationType={value:["hotel"]};if(t==="park")x.accommodationType={value:["bungalow","chalet","mobilehome"]};if(t==="camping")x.accommodationType={value:["camping spot","tent","mobilehome"]};
 var geenAI={ES:1,IT:1,PT:1};document.querySelectorAll("#aanbod [data-cc]").forEach(function(b){b.hidden=(t==="ai"&&geenAI[b.dataset.cc]===1);});if(t==="ai"&&geenAI[cc]===1){cc="";document.querySelectorAll("#aanbod [data-cc]").forEach(function(b){b.classList.toggle("on",b.dataset.cc==="");});}
-C.extra=x;n=3;gestart=true;document.getElementById("dcvH").textContent=KOP[t]||"Vergelijk vakantie-aanbiedingen";laad();
+C.extra=x;n=F?12:3;gestart=true;document.getElementById("dcvH").textContent=KOP[t]||"Vergelijk vakantie-aanbiedingen";laad();
 if(!stil){var el=document.getElementById("aanbod");if(el)el.scrollIntoView({behavior:"smooth",block:"start"});}};
 if("IntersectionObserver" in window){var io=new IntersectionObserver(function(es){if(es.some(function(x){return x.isIntersecting;})){io.disconnect();start();}},{rootMargin:"600px"});io.observe(document.getElementById("aanbod"));}else start();})();</script>
 <!-- dcv:end -->
